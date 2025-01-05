@@ -1,21 +1,12 @@
 'use client'
-import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
+
+import { SignupForm } from "@/components/auth/signup-form";
 
 export default function signup(){
-    const router = useRouter()
 
-    const handleHomeButton = () => {
-        router.push("/")
-    }
-
-    const handleLoginButton = () => {
-        router.push("/login")
-    }
     return (
         <div>
-            <Button onClick={handleHomeButton}>Home</Button>
-            <Button onClick={handleLoginButton}>Login</Button>
+            <SignupForm/>
         </div>
     )
 }
