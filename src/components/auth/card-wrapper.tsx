@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { FcGoogle } from "react-icons/fc"
 import { FaGithub } from "react-icons/fa"
+import {signIn} from "next-auth/react"
+import { DEFAULT_LOGIN_REDIRECT } from "@/routes"
 
 const font = Poppins({
     subsets: ["latin"],
@@ -28,7 +30,9 @@ export const CardWrapper = ({
 }: CardWrapperProps) => {
 
     const onClick = (provider: "google" | "github") => {
-        console.log(provider)
+        signIn(provider, {
+            callbackUrl: DEFAULT_LOGIN_REDIRECT
+        })
     }
 
     return (

@@ -12,7 +12,9 @@ export const {
     signOut
 } = NextAuth({
     callbacks: {
-        async signIn({user}){
+        async signIn({user, account}){
+
+            if(account?.provider != "credentials") return true;
 
             if(user.id == null) return false
             const existingUser = await getUserById(user.id)
