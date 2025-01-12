@@ -32,7 +32,6 @@ export const SignupForm = () => {
         startTransition(() => {
             signup(values)
             .then((data) => {
-                console.log(data)
                 if(data.success){
                     setAlert(data.success)
                     setAlertType("success")
@@ -41,7 +40,6 @@ export const SignupForm = () => {
                     setAlert(data.error)
                     setAlertType("error")
                 }
-                console.log(alert)
             })
         })
     }
