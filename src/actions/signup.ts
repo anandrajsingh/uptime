@@ -4,6 +4,8 @@ import { z } from "zod";
 import bcrypt from "bcryptjs"
 import { getUserByEmail } from "@/data/user";
 import { db } from "@/lib/db";
+import { generateVerificationToken } from "@/lib/token";
+import { sendVerificationEmail } from "@/lib/mail";
 
 export const signup = async(values: z.infer<typeof SignupSchema>) => {
     const validatedFields = SignupSchema.safeParse(values)
@@ -24,7 +26,13 @@ export const signup = async(values: z.infer<typeof SignupSchema>) => {
             password: hashedPassword
         }
     })
-    console.log(user)
+    
+    const verificationToken = await generateVerificationToken(email)
+
+    await sendVerificationEmail(
+        verificationToken.email,
+        verificationToken.token
+    )
 
     return {success: "Email sent"}
 }

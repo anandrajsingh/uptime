@@ -37,7 +37,6 @@ export const LoginForm = () => {
         startTransition(() => {
             login(values)
             .then((data) => {
-                console.log(data)
                 if(data?.success){
                     setAlert(data.success)
                     setAlertType("success")
@@ -46,7 +45,6 @@ export const LoginForm = () => {
                     setAlert(data.error)
                     setAlertType("error")
                 }
-                console.log(alert)
             })
         })
     }
