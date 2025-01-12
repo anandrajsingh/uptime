@@ -11,7 +11,7 @@ import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import Link from "next/link"
 import { FormAlert } from "../form-alert"
-import { useState, useTransition } from "react"
+import { useEffect, useState, useTransition } from "react"
 import { login } from "@/actions/login"
 
 export const LoginForm = () => {
@@ -19,6 +19,11 @@ export const LoginForm = () => {
     const [isPending, startTransition] = useTransition()
     const [alert, setAlert] = useState("")
     const [alertType, setAlertType] = useState("")
+
+    const searchParams = useSearchParams()
+    const urlError = searchParams.get("error") === "OAuthAccountNotLinked" ?
+    "Email already in use with different provider"
+    : "";
 
     const form = useForm<z.infer<typeof LoginSchema>>({
         resolver: zodResolver(LoginSchema),
@@ -33,11 +38,11 @@ export const LoginForm = () => {
             login(values)
             .then((data) => {
                 console.log(data)
-                if(data.success){
+                if(data?.success){
                     setAlert(data.success)
                     setAlertType("success")
                 }
-                if(data.error){
+                if(data?.error){
                     setAlert(data.error)
                     setAlertType("error")
                 }
@@ -88,8 +93,8 @@ export const LoginForm = () => {
                                 }
                             />
                         </div>
-                        <FormAlert alert={alert} alertType={alertType}/>
-                        <FormAlert alert="" alertType="error"/>
+                        <FormAlert alert={alert || urlError} alertType={alertType || "error"}/>
+                        {/* <FormAlert alert={urlError} alertType="error"/> */}
                         <Button type="submit" disabled={isPending} className="w-full">
                             Login
                         </Button>
