@@ -1,5 +1,5 @@
 import { AppSidebar } from "@/components/app-sidebar";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { MainPageLayout } from "./main_page";
 
 export default function DashboardLayout({
@@ -14,9 +14,9 @@ export default function DashboardLayout({
                 <div >
                     <SidebarProvider>
                         <AppSidebar />
-                        <MainPageLayout>
-                            {children}
-                        </MainPageLayout>
+                            <MainPageLayout>
+                                {children}
+                            </MainPageLayout>
                     </SidebarProvider>
                 </div>
             </body>

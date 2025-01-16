@@ -9,7 +9,7 @@ export const MainPageLayout = ({
 
     const { open , isMobile} = useSidebar()
     return (
-        <main className="flex p-2">
+        <main className="flex p-2 w-full">
             {!open && <SidebarTrigger />}
             {isMobile && <SidebarTrigger />}
             {children}
