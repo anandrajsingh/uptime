@@ -10,7 +10,7 @@ export default function Monitors() {
                 </div>
                 
                 <Button size="sm" className="font-bold" >
-                    <Link href="/dashboard/monitors/new">
+                    <Link href="/monitors/new">
                         Create Monitor
                     </Link>
                 </Button>

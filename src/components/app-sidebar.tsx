@@ -6,12 +6,12 @@ import { SiWebmoney } from "react-icons/si";
 const items = [
     {
         title: "Monitors",
-        url: "/dashboard/monitors",
+        url: "/monitors",
         icon: SiWebmoney
     },
     {
         title: "Incidents",
-        url: "/dashboard/incidents",
+        url: "/incidents",
         icon: GrAction
     },
     
