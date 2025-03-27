@@ -13,4 +13,4 @@ export const authRoutes = [
 
 export const apiPrefix = "/api/auth"
 
-export const DEFAULT_LOGIN_REDIRECT = "/dashboard"
+export const DEFAULT_LOGIN_REDIRECT = "/monitor"
