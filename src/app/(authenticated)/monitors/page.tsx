@@ -8,12 +8,12 @@ export default function Monitors() {
                 <div className="font-bold">
                     Create your first monitor
                 </div>
-                
-                <Button size="sm" className="font-bold" >
-                    <Link href="/monitors/new">
+
+                <Link href="/monitors/new">
+                    <Button size="sm" className="font-bold" >
                         Create Monitor
-                    </Link>
-                </Button>
+                    </Button>
+                </Link>
             </div>
         </div>
     )
