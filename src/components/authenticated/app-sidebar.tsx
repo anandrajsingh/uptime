@@ -22,7 +22,7 @@ export function AppSidebar() {
         <Sidebar >
             <SidebarHeader className="p-3 justify-between">
                 <div className="font-bold">Uptime</div>
-                <SidebarTrigger/>
+                
             </SidebarHeader>
             <SidebarContent>
                 <SidebarGroup>

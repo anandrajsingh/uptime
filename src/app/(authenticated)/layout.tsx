@@ -1,4 +1,5 @@
-import { AppSidebar } from "@/components/app-sidebar";
+import { AppNavBar } from "@/components/authenticated/app-navbar";
+import { AppSidebar } from "@/components/authenticated/app-sidebar";
 import { SidebarProvider } from "@/components/ui/sidebar";
 
 export default function Layout ({children}: {children: React.ReactNode}){
@@ -6,6 +7,7 @@ export default function Layout ({children}: {children: React.ReactNode}){
         <SidebarProvider>
             <AppSidebar />
             <main className="w-full">
+                <AppNavBar />
                 {children}
             </main>
         </SidebarProvider>
