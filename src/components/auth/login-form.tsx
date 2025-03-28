@@ -11,7 +11,7 @@ import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import Link from "next/link"
 import { FormAlert } from "../form-alert"
-import { useEffect, useState, useTransition } from "react"
+import { useState, useTransition } from "react"
 import { login } from "@/actions/login"
 
 export const LoginForm = () => {
