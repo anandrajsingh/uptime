@@ -1,11 +1,12 @@
 "use client"
 
+import { logOut } from "@/actions/logout"
 import { Button } from "../ui/button"
 import { SidebarTrigger } from "../ui/sidebar"
 
 export function AppNavBar(){
     const onClick =() => {
-
+        logOut()
     }
     return (
         <div>
