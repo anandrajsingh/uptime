@@ -14,7 +14,25 @@ export default function CreateMonitorForm() {
     const form = useForm()
 
     const onSubmit = () => {
-        console.log("hello")
+        async function addWebsite() {
+            try {
+                const res = await fetch("/api/create-monitor", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        url : "test.com"
+                    })
+                });
+                if (!res.ok) throw new Error("Failed to fetch collections");
+                const data = await res.json();
+                console.log(data)
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        addWebsite();
     };
 
     return (
@@ -29,7 +47,7 @@ export default function CreateMonitorForm() {
                         </div>
                         <div>
                             <Card className='shadow-md w-[400px]'>
-                                <div className=' p-4'>
+                                {/* <div className=' p-4'>
                                     <FormField control={form.control} name='alert-condition'
                                         render={
                                             ({ field }) => (
@@ -49,8 +67,8 @@ export default function CreateMonitorForm() {
                                         }
                                     />
                                 </div>
-                                <Separator className='my-2' />
-                                <div className=' p-4'>
+                                <Separator className='my-2' /> */}
+                                <div className='p-4'>
                                     <FormField control={form.control} name='alert-condition'
                                         render={
                                             ({ field }) => (
