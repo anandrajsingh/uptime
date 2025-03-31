@@ -8,26 +8,33 @@ import { Card } from '../ui/card';
 // import { Separator } from '../ui/separator';
 import { Button } from '../ui/button';
 
+interface MonitorSchema {
+    url : string
+}
+
 
 export default function CreateMonitorForm() {
 
-    const form = useForm()
+    const form = useForm<MonitorSchema>({
+        defaultValues: {url: ""}
+    })
 
-    const onSubmit = () => {
+    const onSubmit = (monitor: MonitorSchema) => {
         async function addWebsite() {
             try {
+                console.log({test: "first"})
                 const res = await fetch("/api/create-monitor", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        url : "test.com"
+                        url : monitor.url
                     })
                 });
-                if (!res.ok) throw new Error("Failed to fetch collections");
+                console.log(res)
+                if (!res.ok) throw new Error("Failed to add website");
                 const data = await res.json();
-                console.log(data)
             } catch (error) {
                 console.error(error);
             }
@@ -69,7 +76,7 @@ export default function CreateMonitorForm() {
                                 </div>
                                 <Separator className='my-2' /> */}
                                 <div className='p-4'>
-                                    <FormField control={form.control} name='alert-condition'
+                                    <FormField control={form.control} name="url"
                                         render={
                                             ({ field }) => (
                                                 <FormItem >
@@ -85,7 +92,7 @@ export default function CreateMonitorForm() {
                                     />
                                 </div>
 
-                                <Button size="sm" className='font-bold flex justify-self-center mb-2'>
+                                <Button type='submit' size="sm" className='font-bold flex justify-self-center mb-2'>
                                     Add 
                                 </Button>
                             </Card>
