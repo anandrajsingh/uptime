@@ -1,10 +1,10 @@
 // import { useState, useEffect } from "react";
 
-interface ServiceStatus {
-    name: string;
-    uptime: number;
-    history: boolean[]; 
-}
+// interface ServiceStatus {
+//     name: string;
+//     uptime: number;
+//     history: boolean[]; 
+// }
 
 const services = [
     {
