@@ -53,18 +53,26 @@ model VerificationToken {
 }
 
 model PasswordResetToken {
-  id String @id @default(cuid())
-  email String
-  token String @unique
+  id      String   @id @default(cuid())
+  email   String
+  token   String   @unique
   expires DateTime
 
   @@unique([email, token])
 }
 
 model Monitor {
-  id  String @id @default(cuid())
-  url String @unique
-
+  id     String  @id @default(cuid())
+  url    String  @unique
+  checks Check[]
   userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Check {
+  id           String  @id @default(cuid())
+  status       String
+  responseTime Int?
+  monitorId    String
+  monitor      Monitor @relation(fields: [monitorId], references: [id], onDelete: Cascade)
 }

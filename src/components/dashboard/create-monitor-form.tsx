@@ -3,9 +3,6 @@ import { Input } from '../ui/input';
 import { Form, FormControl, FormField, FormItem, FormLabel } from '../ui/form';
 import { useForm } from 'react-hook-form';
 import { Card } from '../ui/card';
-// import { Select, SelectTrigger } from '../ui/select';
-// import { SelectValue } from '@radix-ui/react-select';
-// import { Separator } from '../ui/separator';
 import { Button } from '../ui/button';
 
 interface MonitorSchema {
@@ -34,7 +31,6 @@ export default function CreateMonitorForm() {
                 });
                 console.log(res)
                 if (!res.ok) throw new Error("Failed to add website");
-                const data = await res.json();
             } catch (error) {
                 console.error(error);
             }
@@ -54,27 +50,7 @@ export default function CreateMonitorForm() {
                         </div>
                         <div>
                             <Card className='shadow-md w-[400px]'>
-                                {/* <div className=' p-4'>
-                                    <FormField control={form.control} name='alert-condition'
-                                        render={
-                                            ({ field }) => (
-                                                <FormItem >
-                                                    <FormLabel>
-                                                        Alert us when
-                                                    </FormLabel>
-                                                    <FormControl>
-                                                        <Select >
-                                                            <SelectTrigger >
-                                                                <SelectValue {...field} placeholder="Url becomes unavailable" />
-                                                            </SelectTrigger>
-                                                        </Select>
-                                                    </FormControl>
-                                                </FormItem>
-                                            )
-                                        }
-                                    />
-                                </div>
-                                <Separator className='my-2' /> */}
+                                
                                 <div className='p-4'>
                                     <FormField control={form.control} name="url"
                                         render={
@@ -84,7 +60,7 @@ export default function CreateMonitorForm() {
                                                         URL to monitor
                                                     </FormLabel>
                                                     <FormControl>
-                                                        <Input {...field} placeholder='https://example.com'/>
+                                                        <Input {...field} autoComplete='https://' placeholder='https://example.com'/>
                                                     </FormControl>
                                                 </FormItem>
                                             )
