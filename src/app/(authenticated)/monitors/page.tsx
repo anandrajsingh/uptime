@@ -53,12 +53,7 @@ export default function Monitors() {
 
                             
                             <div className="flex items-center gap-4">
-                                {/* {monitor.status === "down" && (
-                                    <Button size="sm" variant="destructive" className="flex items-center gap-2">
-                                        <ShieldAlert className="h-4 w-4" />
-                                        Ongoing Incident
-                                    </Button>
-                                )} */}
+                            
                                 <span className="text-gray-400 text-sm">10 min ago</span>
                                 <MoreVertical className="text-gray-400 cursor-pointer" />
                             </div>
