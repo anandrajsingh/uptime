@@ -13,7 +13,7 @@ interface MonitorSchema {
 export default function CreateMonitorForm() {
 
     const form = useForm<MonitorSchema>({
-        defaultValues: {url: ""}
+        defaultValues: {url: "https://"}
     })
 
     const onSubmit = (monitor: MonitorSchema) => {
@@ -31,6 +31,7 @@ export default function CreateMonitorForm() {
                 });
                 console.log(res)
                 if (!res.ok) throw new Error("Failed to add website");
+                form.reset();
             } catch (error) {
                 console.error(error);
             }
@@ -60,7 +61,7 @@ export default function CreateMonitorForm() {
                                                         URL to monitor
                                                     </FormLabel>
                                                     <FormControl>
-                                                        <Input {...field} autoComplete='https://' placeholder='https://example.com'/>
+                                                        <Input {...field} placeholder='https://example.com'/>
                                                     </FormControl>
                                                 </FormItem>
                                             )
