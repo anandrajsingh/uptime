@@ -1,9 +1,10 @@
 "use client"
-import { Input } from '../ui/input';
-import { Form, FormControl, FormField, FormItem, FormLabel } from '../ui/form';
+
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import { useForm } from 'react-hook-form';
-import { Card } from '../ui/card';
-import { Button } from '../ui/button';
 
 interface MonitorSchema {
     url : string

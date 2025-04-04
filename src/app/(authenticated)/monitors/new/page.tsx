@@ -1,4 +1,4 @@
-import CreateMonitorForm from "@/components/dashboard/create-monitor-form";
+import CreateMonitorForm from "@/components/authenticated/dashboard/create-monitor-form";
 
 export default function CreateMonitor() {
     return (
