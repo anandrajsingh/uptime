@@ -70,9 +70,10 @@ model Monitor {
 }
 
 model Check {
-  id           String  @id @default(cuid())
+  id           String   @id @default(cuid())
   status       String
   responseTime Int?
+  createdAt    DateTime @default(now())
   monitorId    String
-  monitor      Monitor @relation(fields: [monitorId], references: [id], onDelete: Cascade)
+  monitor      Monitor  @relation(fields: [monitorId], references: [id], onDelete: Cascade)
 }

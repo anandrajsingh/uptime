@@ -54,13 +54,19 @@ export default async function Monitors() {
 
                                     {monitor.checks.length > 0 && (
                                         <span className={`text-sm font-bold ${monitor.checks.at(-1)?.status === "UP" ? "text-green-500" : "text-red-500"}`}>
-                                        {monitor.checks.at(-1)?.status}
-                                    </span>
+                                            {monitor.checks.at(-1)?.status}
+                                        </span>
                                     )}
                                 </div>
 
                                 <div className="flex items-center gap-4">
-                                    <span className="text-gray-400 text-sm">10 min ago</span>
+                                    {monitor.checks.length > 0 && monitor.checks.at(-1)?.createdAt ? (
+                                        <span className="text-gray-400 text-sm">
+                                            {new Date(monitor.checks.at(-1)!.createdAt).toLocaleTimeString()}
+                                        </span>
+                                    ) : (
+                                        <span className="text-gray-400 text-sm">No checks available</span>
+                                    )}
                                     <MoreVertical className="text-gray-400 cursor-pointer" />
                                 </div>
                             </li>
