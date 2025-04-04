@@ -62,11 +62,14 @@ model PasswordResetToken {
 }
 
 model Monitor {
-  id     String  @id @default(cuid())
-  url    String  @unique
-  checks Check[]
-  userId String
-  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id        String      @id @default(cuid())
+  url       String      @unique
+  paused    Boolean     @default(false)
+  createdAt DateTime    @default(now())
+  checks    Check[]
+  incidents Incident[]
+  userId    String
+  user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Check {
@@ -74,6 +77,14 @@ model Check {
   status       String
   responseTime Int?
   createdAt    DateTime @default(now())
+  monitorId    String
+  monitor      Monitor  @relation(fields: [monitorId], references: [id], onDelete: Cascade)
+}
+
+model Incident {
+  id           String   @id @default(cuid())
+  createdAt    DateTime @default(now())
+  acknowledged Boolean  @default(false)
   monitorId    String
   monitor      Monitor  @relation(fields: [monitorId], references: [id], onDelete: Cascade)
 }
