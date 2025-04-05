@@ -42,9 +42,11 @@ export default async function Incidents() {
                     <div className="font-bold">
                         We create incident everytime your monitor fails
                     </div>
-                    <Button className="font-bold">
-                        Report new incident
-                    </Button>
+                    <Link href="/incidents/new">
+                        <Button size="sm" className="font-bold" >
+                            Create Monitor
+                        </Button>
+                    </Link>
                 </div>
             ) : (
                 <div className="w-full max-w-lg space-y-4">
@@ -65,6 +67,9 @@ export default async function Incidents() {
                             </li>
                         ))}
                     </ul>
+                    <Link href="/incidents/new">
+                        <Button size="sm" className="font-bold my-4">Report new incident</Button>
+                    </Link>
                 </div>
             )}
         </div>
