@@ -34,7 +34,6 @@ export default async function Incidents() {
 
         return hoursAgo < 24 ? `${hoursAgo} hour${hoursAgo === 1 ? '' : 's'} ago` : formatDistanceToNow(date, { addSuffix: true })
     }
-    console.log(incidentList)
     return (
         <div className="h-screen w-full flex items-center justify-center">
             {incidentList.length === 0 ? (
