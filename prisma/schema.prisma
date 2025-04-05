@@ -22,6 +22,7 @@ model User {
   password      String?
   accounts      Account[]
   monitors      Monitor[]
+  projects      Project[]
 }
 
 model Account {
@@ -62,14 +63,14 @@ model PasswordResetToken {
 }
 
 model Monitor {
-  id        String      @id @default(cuid())
-  url       String      @unique
-  paused    Boolean     @default(false)
-  createdAt DateTime    @default(now())
+  id        String     @id @default(cuid())
+  url       String     @unique
+  paused    Boolean    @default(false)
+  createdAt DateTime   @default(now())
   checks    Check[]
   incidents Incident[]
   userId    String
-  user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Check {
@@ -87,4 +88,21 @@ model Incident {
   acknowledged Boolean  @default(false)
   monitorId    String
   monitor      Monitor  @relation(fields: [monitorId], references: [id], onDelete: Cascade)
+}
+
+model Project {
+  id     String     @id @default(cuid())
+  url    String     @unique
+  views  PageView[]
+  userId String
+  user   User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model PageView {
+  id        String  @id @default(cuid())
+  url       String
+  referrer  String?
+  userAgent String?
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
 }
