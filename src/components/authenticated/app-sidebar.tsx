@@ -2,6 +2,7 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupConte
 
 import { GrAction } from "react-icons/gr";
 import { SiWebmoney } from "react-icons/si";
+import { GoGraph } from "react-icons/go";
 
 const items = [
     {
@@ -14,7 +15,11 @@ const items = [
         url: "/incidents",
         icon: GrAction
     },
-    
+    {
+        title: "Analytics",
+        url: "/analytics",
+        icon: GoGraph,
+    }
 ]
 
 export function AppSidebar() {
