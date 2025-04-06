@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { differenceInHours, formatDistanceToNow } from "date-fns";
 import { getIncident } from "./actions";
-import { CopyCodeBlock } from "./CopyCodeBlock";
+import { CopyCodeBlock } from "@/components/authenticated/CopyCodeBlock";
+import { formatUrl, getRelativeTime } from "@/lib/format";
 
 type Params = Promise<{ id: string }>
 type Monitor = {
@@ -37,18 +37,6 @@ export default async function Incident(props: { params: Params }) {
     const code = `curl -L --connect-timeout 10 --max-time 15 \
   -H 'User-Agent: Uptime By Anand Bot Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36' \
   '${incident.monitor.url}'`
-
-    const formatUrl = (url?: string): string => {
-        if (!url) return '';
-        return url.replace(/^(https?:\/\/)/, '');
-    };
-
-    const getRelativeTime = (dateString: Date) => {
-        const date = new Date(dateString)
-        const hoursAgo = differenceInHours(new Date(), date)
-
-        return hoursAgo < 24 ? `${hoursAgo} hour${hoursAgo === 1 ? '' : 's'} ago` : formatDistanceToNow(date, { addSuffix: true })
-    }
 
     return (
         <div className="h-screen w-full py-20 flex justify-center">
