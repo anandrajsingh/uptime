@@ -1,4 +1,4 @@
-import { formatUrl, getRelativeTime } from "@/lib/format";
+import { formatUrl } from "@/lib/format";
 import { getProject } from "./action"
 import { CopyCodeBlock } from "@/components/authenticated/CopyCodeBlock";
 import { Separator } from "@/components/ui/separator";
@@ -14,7 +14,7 @@ export default async function AnalysisDetail(props: { params: Params }) {
     const code = `<script
   defer
   data-project-id="${res.project?.id}"
-  src="https://uptime.anandrajsingh.xyz/tracker.js"
+  src="https://uptime.anandrajsingh.xyz/tracking.js"
 />`
 
     console.log(res)
