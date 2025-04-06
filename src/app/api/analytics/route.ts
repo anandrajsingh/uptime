@@ -13,14 +13,33 @@ export async function OPTIONS() {
 }
 
 export async function POST(req: Request) {
-  const { projectId, url, referrer, userAgent } = await req.json();
+  const { projectId,
+    url,
+    referrer,
+    userAgent,
+    language,
+    timeZone,
+    screen,
+    pageLoadTime,
+    timeStamp, } = await req.json();
 
   if (!projectId || !url) {
-    return NextResponse.json({ error: "Missing data" }, { status: 400, headers: {"Access-Control-Allow-Origin": "*",} });
+    return NextResponse.json({ error: "Missing data" }, { status: 400, headers: { "Access-Control-Allow-Origin": "*", } });
   }
 
   await db.pageView.create({
-    data: { projectId, url, referrer, userAgent },
+    data: {
+      url,
+      referrer,
+      userAgent,
+      language,
+      timeZone,
+      screenWidth: screen?.width,
+      screenHeight: screen?.height,
+      pageLoadTime,
+      timeStamp: timeStamp ? new Date(timeStamp) : undefined,
+      project: { connect: { id: projectId } },
+    },
   });
 
   return NextResponse.json(

@@ -103,6 +103,12 @@ model PageView {
   url       String
   referrer  String?
   userAgent String?
+  language String?
+  timeZone String?
+  screenWidth Int?
+  screenHeight Int?
+  pageLoadTime Int?
+  timeStamp DateTime @default(now())
   projectId String
   project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
 }
