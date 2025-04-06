@@ -20,6 +20,7 @@ export const createProject = async (projectData: ProjectSchema) => {
 
         return { id: newProject.id };
     } catch (error) {
-        return { error: "Failed to create project" }
+        console.error("Failed to create project:", error);
+        return { error: "Failed to create project" };
     }
 }
