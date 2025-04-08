@@ -35,20 +35,20 @@ export default async function Incident(props: { params: Params }) {
     }
 
     const code = `curl -L --connect-timeout 10 --max-time 15 \
-  -H 'User-Agent: Uptime By Anand Bot Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36' \
+  -H 'User-Agent: Uptime Bot By Anand Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36' \
   '${incident.monitor.url}'`
 
     return (
-        <div className="h-screen w-full py-20 flex justify-center">
-            <div className="w-7/12 flex flex-col gap-6">
+        <div className="h-screen w-full font-sans py-20 flex justify-center px-4">
+            <div className="max-w-4xl flex flex-col gap-6">
                 <div className="flex justify-between">
-                    <span className="text-4xl font-bold">{formatUrl(incident.monitor.url)}</span>
+                    <span className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">{formatUrl(incident.monitor.url)}</span>
                     <Button size="sm" className={`font-bold ${incident.acknowledged ? "bg-slate-400 cursor-not-allowed" : ""}`}>{incident.acknowledged ? "Acknowledged" : "Acknowledge"}</Button>
                 </div>
                 <div className="flex w-full gap-4">
                     <div className="flex flex-col gap-2 bg-gray-800 border-slate-700 border p-6 rounded-lg w-full">
                         <div className="text-sm text-slate-400">Started At</div>
-                        <span className="text-2xl">{getRelativeTime(incident.createdAt)}</span>
+                        <span className="text-xl font-semibold">{getRelativeTime(incident.createdAt)}</span>
                     </div>
                     <div className="flex flex-col gap-2 bg-gray-800 p-6 border-slate-700 border rounded-lg w-full">
                         <div className="text-sm text-slate-400">Checked URL</div>
