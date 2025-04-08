@@ -93,6 +93,7 @@ model Incident {
 model Project {
   id     String     @id @default(cuid())
   url    String     @unique
+  createdAt DateTime @default(now())
   views  PageView[]
   userId String
   user   User       @relation(fields: [userId], references: [id], onDelete: Cascade)

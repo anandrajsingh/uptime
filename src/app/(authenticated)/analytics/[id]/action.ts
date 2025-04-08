@@ -1,6 +1,7 @@
 "use server"
 import { auth } from "@/auth"
 import { db } from "@/lib/db"
+import { subHours } from "date-fns"
 
 export const getProject = async (id: string) => {
 
@@ -13,7 +14,13 @@ export const getProject = async (id: string) => {
         where: {
             id
         },
-        include: { views: true}
+        include: { views: {
+            where: {
+                timeStamp: {
+                    gte: subHours(new Date, 24)
+                }
+            }
+        }}
     })
 
     return { project }
