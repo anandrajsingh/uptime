@@ -68,6 +68,7 @@ model Monitor {
   paused    Boolean    @default(false)
   createdAt DateTime   @default(now())
   checks    Check[]
+  checkDaily CheckDaily[]
   incidents Incident[]
   userId    String
   user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -80,6 +81,15 @@ model Check {
   createdAt    DateTime @default(now())
   monitorId    String
   monitor      Monitor  @relation(fields: [monitorId], references: [id], onDelete: Cascade)
+}
+
+model CheckDaily {
+  id String @id @default(cuid())
+  status String
+  responseTime Int?
+  createdAt DateTime @default(now())
+  monitorId String
+  monitor Monitor @relation(fields: [monitorId], references: [id], onDelete: Cascade)
 }
 
 model Incident {
