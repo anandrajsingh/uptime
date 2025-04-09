@@ -1,9 +1,10 @@
 import { auth } from "@/auth";
 import { Button } from "@/components/ui/button";
 import { db } from "@/lib/db";
-import { Circle, MoreVertical } from "lucide-react";
+import { Circle} from "lucide-react";
 import Link from "next/link";
 import { formatDistanceToNow, differenceInHours } from 'date-fns'
+import { IncidentOption } from "./IncidentOptions";
 
 export default async function Incidents() {
 
@@ -43,7 +44,7 @@ export default async function Incidents() {
                     </div>
                     <Link href="/incidents/new">
                         <Button size="sm" className="font-bold" >
-                            Create Monitor
+                            Report Incident
                         </Button>
                     </Link>
                 </div>
@@ -61,7 +62,7 @@ export default async function Incidents() {
                                 </div>
                                 <div className="flex items-center gap-4">
                                     <span>{getRelativeTime(incident.createdAt)}</span>
-                                    <MoreVertical className="text-gray-400 cursor-pointer" />
+                                    <IncidentOption incidentId={incident.id} />
                                 </div>
                             </li>
                         ))}
