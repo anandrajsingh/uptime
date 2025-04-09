@@ -1,9 +1,10 @@
 import { auth } from "@/auth";
+import { MonitorOption } from "@/app/(authenticated)/monitors/MonitorOptions";
 import { Button } from "@/components/ui/button";
 import { db } from "@/lib/db";
 import { formatUrl } from "@/lib/format";
 import { formatDistanceToNow } from "date-fns";
-import { Circle, MoreVertical } from "lucide-react";
+import { Circle } from "lucide-react";
 import Link from "next/link";
 
 export default async function Monitors() {
@@ -73,7 +74,7 @@ export default async function Monitors() {
                                                     )}`
                                                     : "No checks yet"}
                                             </span>
-                                        <MoreVertical className="text-gray-400 cursor-pointer hover:text-white transition" />
+                                        <MonitorOption monitorId={monitor.id} paused={monitor.paused}/>
                                     </div>
                                 </li>
                             )
