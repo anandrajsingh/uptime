@@ -3,6 +3,7 @@ import { getProject } from "./action"
 import { CopyCodeBlock } from "@/components/authenticated/CopyCodeBlock";
 import { Separator } from "@/components/ui/separator";
 import { format } from "date-fns";
+import Link from "next/link";
 
 type Params = Promise<{ id: string }>
 
@@ -32,7 +33,9 @@ export default async function AnalysisDetail(props: { params: Params }) {
                     </div>
                     <div className="flex flex-col gap-2 bg-gray-800 p-6 border-slate-700 border rounded-lg w-full">
                         <div className="text-sm text-slate-400">Checked URL</div>
-                        <span className="border border-slate-500 py-1 px-2 bg-slate-900 rounded-sm">{res.project?.url}</span>
+                        {res.project?.url && (
+                        <Link href={res.project?.url} className="border border-slate-500 py-1 px-2 bg-slate-900 rounded-sm">{res.project?.url}</Link>
+                        )}
                     </div>
                 </div>
                 <div className="flex flex-col w-full bg-gray-900 border border-slate-700 rounded-lg">

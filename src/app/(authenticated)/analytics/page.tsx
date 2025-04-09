@@ -1,8 +1,9 @@
 import { auth } from "@/auth";
 import { Button } from "@/components/ui/button";
 import { db } from "@/lib/db";
-import { Circle, MoreVertical } from "lucide-react";
+import { Circle } from "lucide-react";
 import Link from "next/link";
+import { AnalyticsOption } from "./AnalyticsOption";
 
 export default async function Analytics() {
 
@@ -44,7 +45,7 @@ export default async function Analytics() {
                                 </div>
 
                                 <div className="flex items-center gap-4">
-                                    <MoreVertical className="text-gray-400 cursor-pointer" />
+                                    <AnalyticsOption projectId={project.id} />
                                 </div>
                             </li>
                         ))}
