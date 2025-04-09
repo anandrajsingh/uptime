@@ -1,7 +1,7 @@
 "use server"
 import { auth } from "@/auth"
 import { db } from "@/lib/db"
-import { subHours } from "date-fns"
+import { subDays, subHours } from "date-fns"
 
 export const getMonitor = async (id: string) => {
 
@@ -14,13 +14,22 @@ export const getMonitor = async (id: string) => {
         where: {
             id
         },
-        include: {checks: {
-            where: {
-                createdAt: {
-                    gte: subHours(new Date(), 24)
+        include: {
+            checks: {
+                where: {
+                    createdAt: {
+                        gte: subHours(new Date(), 24)
+                    }
+                }
+            },
+            checkDaily: {
+                where: {
+                    createdAt: {
+                        gte: subDays(new Date(), 30)
+                    }
                 }
             }
-        }}
+        }
     })
 
     return { monitor }

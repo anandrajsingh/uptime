@@ -13,6 +13,7 @@ export default async function Monitor(props: { params: Params }) {
 
     const monitor = res.monitor;
     const checks = monitor?.checks || [];
+    const dailyCheck = monitor?.checkDaily || []
     const lastCheck = checks.at(-1);
 
     return (
@@ -69,11 +70,27 @@ export default async function Monitor(props: { params: Params }) {
 
                 <div className="bg-[#1f1f2e] border border-gray-700 rounded-xl p-6 shadow-lg mt-6">
                     <h2 className="text-xl font-bold flex items-center gap-2 mb-4">
-                        <History className="text-cyan-400" /> Uptime History
+                        <History className="text-cyan-400" /> Uptime in Last 24 Hours
                     </h2>
 
                     <div className="flex flex-wrap gap-2">
                         {checks?.slice(-30).reverse().map((check) => (
+                            <div
+                                key={check.id}
+                                className={`w-4 h-4 rounded ${check.status === "UP" ? "bg-green-500" : "bg-red-500"}`}
+                                title={`${check.status} - ${new Date(check.createdAt).toLocaleString()}`}
+                            ></div>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="bg-[#1f1f2e] border border-gray-700 rounded-xl p-6 shadow-lg mt-6">
+                    <h2 className="text-xl font-bold flex items-center gap-2 mb-4">
+                        <History className="text-cyan-400" /> Uptime in Last 30 Days
+                    </h2>
+
+                    <div className="flex flex-wrap gap-2">
+                        {dailyCheck?.slice(-30).reverse().map((check) => (
                             <div
                                 key={check.id}
                                 className={`w-4 h-4 rounded ${check.status === "UP" ? "bg-green-500" : "bg-red-500"}`}
@@ -95,6 +112,12 @@ export default async function Monitor(props: { params: Params }) {
                             Uptime in last 24h:{" "}
                             <span className="font-bold text-green-400">
                                 {checks && checks.length > 0 ? `${Math.round((checks.filter((s) => s.status === "UP").length / checks.length) * 100)}%` : "N/A"}
+                            </span>
+                        </p>
+                        <p>
+                            Uptime in last 30d:{" "}
+                            <span className="font-bold text-green-400">
+                                {dailyCheck && dailyCheck.length > 0 ? `${Math.round((dailyCheck.filter((s) => s.status === "UP").length / dailyCheck.length) * 100)}%` : "N/A"}
                             </span>
                         </p>
                         <p>
